@@ -3,7 +3,8 @@ export const dark = {
   colors: {
     background: '#121214',
     backgroundOverlay: 'rgba(13, 12, 10, 0.8)',
-    backgroundHeader: '#FFFFFF',
+    backgroundHeader: '#121214',
+    colorHeader: '#FFFFFF',
     backgroundBox: '#202024',
     backgroundIndex: '#121214',
     backgroundLogo: '#8257e6',

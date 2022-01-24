@@ -8,6 +8,7 @@ declare module 'styled-components' {
       background: string;
       backgroundOverlay: string;
       backgroundHeader: string;
+      colorHeader: string;
       backgroundBox: string;
       backgroundIndex: string;
       inputBackground: string;
@@ -47,6 +48,7 @@ declare module 'styled-components' {
       background: string;
       backgroundOverlay: string;
       backgroundHeader: string;
+      colorHeader: string;
       backgroundBox: string;
       backgroundIndex: string;
       inputBackground: string;

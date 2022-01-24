@@ -1,14 +1,15 @@
 export const light = {
   title: 'light',
   colors: {
-    background: '#F2F3F5',
+    background: '#E1E1E6',
     backgroundOverlay: 'rgba(242, 243, 245, 0.8)',
-    backgroundHeader: '#202024',
+    backgroundHeader: '#121214',
+    colorHeader: '#FFFFFF',
     backgroundBox: '#FFFFFF',
     backgroundIndex: '#5964e0',
     backgroundLogo: '#FFFFFF',
     grayLine: '#DCDDE0',
-    text: '#666666',
+    text: '#121214',
     textHighlight: '#B2B9FF',
     title: '#2E384D',
     red: '#E83F5B',

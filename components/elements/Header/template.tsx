@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { BsFillSunFill, BsFillMoonFill } from 'react-icons/bs';
 import { useTheme } from '../../../contexts/ThemeContext';
 import { HeaderWrapper, Nav } from './styles';
 
@@ -13,7 +14,8 @@ export type HeaderTemplateProps = {
 };
 
 const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ data }) => {
-  const { ToggleTheme } = useTheme();
+  const { ToggleTheme,theme } = useTheme();
+  console.log(theme.title)
   return (
     <HeaderWrapper>
       <div className="brand">
@@ -27,8 +29,8 @@ const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ data }) => {
             </li>
           ))}
           <li>
-            <a role="button" aria-pressed="false" onClick={() => ToggleTheme()}>
-              Theme
+            <a className={`icon ${theme.title === "dark" && "sun"}`}role="button" aria-pressed="false" onClick={() => ToggleTheme()}>
+              {theme.title === "dark" ? <BsFillSunFill/> : <BsFillMoonFill/>}
             </a>
           </li>
         </ul>

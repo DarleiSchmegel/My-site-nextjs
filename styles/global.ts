@@ -1,9 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-* {
-  transition: 1s; 
-}
   body {
     margin: 0;
     padding: 0;
