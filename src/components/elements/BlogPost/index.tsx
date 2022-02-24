@@ -1,17 +1,14 @@
 import React from 'react';
+import { Post } from '../../../types/generated/graphql';
 import BlogPostPageTamplete from './template';
 
-type post = {
-  title: string;
-  slug: string;
-  body: string;
-};
+
 export type BlogPostPageComponentProps = {
-  post: post;
+  post: Post;
 };
 
 const BlogPostPage: React.FC<BlogPostPageComponentProps> = ({ post }) => {
-  console.log(post);
+  console.log("Blog Post",post)
   return <BlogPostPageTamplete post={post} />;
 };
 

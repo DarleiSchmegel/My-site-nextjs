@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const HeaderWrapper = styled.header`
   background: ${(props) => props.theme.colors.backgroundHeader};
+  z-index: 100;
   box-shadow: 1px 1px #888888;
   display: flex;
   flex-direction: row;

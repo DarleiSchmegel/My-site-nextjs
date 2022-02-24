@@ -1,0 +1,532 @@
+type Blog implements _Document & _Linkable {
+  _linkType: String
+  _meta: Meta!
+}
+
+"""A connection to a list of items."""
+type BlogConnectionConnection {
+  """A list of edges."""
+  edges: [BlogConnectionEdge]
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  totalCount: Long!
+}
+
+"""An edge in a connection."""
+type BlogConnectionEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: Blog!
+}
+
+type Carrossel implements _Document & _Linkable {
+  _linkType: String
+  _meta: Meta!
+  body: [CarrosselBody!]
+  description: Json
+  title: Json
+}
+
+union CarrosselBody = CarrosselBodyCarrossel_images
+
+type CarrosselBodyCarrossel_images {
+  fields: [CarrosselBodyCarrossel_imagesFields!]
+  label: String
+  type: String
+}
+
+type CarrosselBodyCarrossel_imagesFields {
+  image: Json
+}
+
+"""A connection to a list of items."""
+type CarrosselConnectionConnection {
+  """A list of edges."""
+  edges: [CarrosselConnectionEdge]
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  totalCount: Long!
+}
+
+"""An edge in a connection."""
+type CarrosselConnectionEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: Carrossel!
+}
+
+"""Date"""
+scalar Date
+
+"""DateTime"""
+scalar DateTime
+
+type Home implements _Document & _Linkable {
+  _linkType: String
+  _meta: Meta!
+  body: [HomeBody!]
+  description: Json
+  thumbnail: Json
+  title: Json
+}
+
+union HomeBody = HomeBodyAlternate_grid | HomeBodyBody | HomeBodyImages_slider
+
+type HomeBodyAlternate_grid {
+  fields: [HomeBodyAlternate_gridFields!]
+  label: String
+  primary: HomeBodyAlternate_gridPrimary
+  type: String
+}
+
+type HomeBodyAlternate_gridFields {
+  description: Json
+  optional_icon: Json
+  title: Json
+}
+
+type HomeBodyAlternate_gridPrimary {
+  description: Json
+  eyebrow_headline: Json
+  image_side: String
+  optional_image: Json
+  title: Json
+}
+
+type HomeBodyBody {
+  label: String
+  primary: HomeBodyBodyPrimary
+  type: String
+}
+
+type HomeBodyBodyPrimary {
+  content: Json
+}
+
+type HomeBodyImages_slider {
+  fields: [HomeBodyImages_sliderFields!]
+  label: String
+  primary: HomeBodyImages_sliderPrimary
+  type: String
+}
+
+type HomeBodyImages_sliderFields {
+  description: Json
+  image: Json
+}
+
+type HomeBodyImages_sliderPrimary {
+  description: Json
+  eyebrow_headline: Json
+  title: Json
+}
+
+"""A connection to a list of items."""
+type HomeConnectionConnection {
+  """A list of edges."""
+  edges: [HomeConnectionEdge]
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  totalCount: Long!
+}
+
+"""An edge in a connection."""
+type HomeConnectionEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: Home!
+}
+
+"""Raw JSON value"""
+scalar Json
+
+"""
+The `Long` scalar type represents non-fractional signed whole numeric values. Long can represent values between -(2^63) and 2^63 - 1.
+"""
+scalar Long
+
+type Meta {
+  """Alternate languages the document."""
+  alternateLanguages: [RelatedDocument!]!
+
+  """The first publication date of the document."""
+  firstPublicationDate: DateTime
+
+  """The id of the document."""
+  id: String!
+
+  """The language of the document."""
+  lang: String!
+
+  """The last publication date of the document."""
+  lastPublicationDate: DateTime
+
+  """The tags of the document."""
+  tags: [String!]!
+
+  """The type of the document."""
+  type: String!
+
+  """The uid of the document."""
+  uid: String
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+type Post implements _Document & _Linkable {
+  _linkType: String
+  _meta: Meta!
+  author: _Linkable
+  body: [PostBody!]
+  description: Json
+  release_date: Date
+  thumbnail: Json
+  title: Json
+}
+
+union PostBody = PostBodyImage | PostBodyImages_slider | PostBodyQuote | PostBodyText
+
+type PostBodyImage {
+  label: String
+  primary: PostBodyImagePrimary
+  type: String
+}
+
+type PostBodyImagePrimary {
+  caption: Json
+  image: Json
+}
+
+type PostBodyImages_slider {
+  fields: [PostBodyImages_sliderFields!]
+  label: String
+  primary: PostBodyImages_sliderPrimary
+  type: String
+}
+
+type PostBodyImages_sliderFields {
+  description: Json
+  image: Json
+}
+
+type PostBodyImages_sliderPrimary {
+  description: Json
+  eyebrow_headline: Json
+  title: Json
+}
+
+type PostBodyQuote {
+  label: String
+  primary: PostBodyQuotePrimary
+  type: String
+}
+
+type PostBodyQuotePrimary {
+  autor: Json
+  quote: Json
+}
+
+type PostBodyText {
+  label: String
+  primary: PostBodyTextPrimary
+  type: String
+}
+
+type PostBodyTextPrimary {
+  text: Json
+}
+
+"""A connection to a list of items."""
+type PostConnectionConnection {
+  """A list of edges."""
+  edges: [PostConnectionEdge]
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  totalCount: Long!
+}
+
+"""An edge in a connection."""
+type PostConnectionEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: Post!
+}
+
+type Query {
+  _allDocuments(after: String, before: String, first: Int, firstPublicationDate: DateTime, firstPublicationDate_after: DateTime, firstPublicationDate_before: DateTime, fulltext: String, id: String, id_in: [String!], lang: String, last: Int, lastPublicationDate: DateTime, lastPublicationDate_after: DateTime, lastPublicationDate_before: DateTime, similar: similar, sortBy: SortDocumentsBy, tags: [String!], tags_in: [String!], type: String, type_in: [String!]): _DocumentConnection!
+  allBlogs(after: String, before: String, first: Int, firstPublicationDate: DateTime, firstPublicationDate_after: DateTime, firstPublicationDate_before: DateTime, fulltext: String, id: String, id_in: [String!], lang: String, last: Int, lastPublicationDate: DateTime, lastPublicationDate_after: DateTime, lastPublicationDate_before: DateTime, similar: similar, sortBy: SortBlogy, tags: [String!], tags_in: [String!], uid: String, uid_in: [String!]): BlogConnectionConnection!
+  allCarrossels(after: String, before: String, first: Int, firstPublicationDate: DateTime, firstPublicationDate_after: DateTime, firstPublicationDate_before: DateTime, fulltext: String, id: String, id_in: [String!], lang: String, last: Int, lastPublicationDate: DateTime, lastPublicationDate_after: DateTime, lastPublicationDate_before: DateTime, similar: similar, sortBy: SortCarrossely, tags: [String!], tags_in: [String!], uid: String, uid_in: [String!], where: WhereCarrossel): CarrosselConnectionConnection!
+  allHomes(after: String, before: String, first: Int, firstPublicationDate: DateTime, firstPublicationDate_after: DateTime, firstPublicationDate_before: DateTime, fulltext: String, id: String, id_in: [String!], lang: String, last: Int, lastPublicationDate: DateTime, lastPublicationDate_after: DateTime, lastPublicationDate_before: DateTime, similar: similar, sortBy: SortHomey, tags: [String!], tags_in: [String!], uid: String, uid_in: [String!], where: WhereHome): HomeConnectionConnection!
+  allPosts(after: String, before: String, first: Int, firstPublicationDate: DateTime, firstPublicationDate_after: DateTime, firstPublicationDate_before: DateTime, fulltext: String, id: String, id_in: [String!], lang: String, last: Int, lastPublicationDate: DateTime, lastPublicationDate_after: DateTime, lastPublicationDate_before: DateTime, similar: similar, sortBy: SortPosty, tags: [String!], tags_in: [String!], uid: String, uid_in: [String!], where: WherePost): PostConnectionConnection!
+  allRichtexts(after: String, before: String, first: Int, firstPublicationDate: DateTime, firstPublicationDate_after: DateTime, firstPublicationDate_before: DateTime, fulltext: String, id: String, id_in: [String!], lang: String, last: Int, lastPublicationDate: DateTime, lastPublicationDate_after: DateTime, lastPublicationDate_before: DateTime, similar: similar, sortBy: SortRichtexty, tags: [String!], tags_in: [String!], uid: String, uid_in: [String!], where: WhereRichtext): RichtextConnectionConnection!
+  allSeos(after: String, before: String, first: Int, firstPublicationDate: DateTime, firstPublicationDate_after: DateTime, firstPublicationDate_before: DateTime, fulltext: String, id: String, id_in: [String!], lang: String, last: Int, lastPublicationDate: DateTime, lastPublicationDate_after: DateTime, lastPublicationDate_before: DateTime, similar: similar, sortBy: SortSeoy, tags: [String!], tags_in: [String!], uid: String, uid_in: [String!], where: WhereSeo): SeoConnectionConnection!
+  post(lang: String!, uid: String!): Post
+}
+
+type RelatedDocument {
+  """The id of the document."""
+  id: String!
+
+  """The language of the document."""
+  lang: String!
+
+  """The type of the document."""
+  type: String!
+
+  """The uid of the document."""
+  uid: String
+}
+
+type Richtext implements _Document & _Linkable {
+  _linkType: String
+  _meta: Meta!
+  richtext: Json
+}
+
+"""A connection to a list of items."""
+type RichtextConnectionConnection {
+  """A list of edges."""
+  edges: [RichtextConnectionEdge]
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  totalCount: Long!
+}
+
+"""An edge in a connection."""
+type RichtextConnectionEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: Richtext!
+}
+
+type Seo implements _Document & _Linkable {
+  _linkType: String
+  _meta: Meta!
+  description: Json
+  thumbnail: Json
+  title: Json
+}
+
+"""A connection to a list of items."""
+type SeoConnectionConnection {
+  """A list of edges."""
+  edges: [SeoConnectionEdge]
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  totalCount: Long!
+}
+
+"""An edge in a connection."""
+type SeoConnectionEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: Seo!
+}
+
+enum SortBlogy {
+  meta_firstPublicationDate_ASC
+  meta_firstPublicationDate_DESC
+  meta_lastPublicationDate_ASC
+  meta_lastPublicationDate_DESC
+}
+
+enum SortCarrossely {
+  description_ASC
+  description_DESC
+  meta_firstPublicationDate_ASC
+  meta_firstPublicationDate_DESC
+  meta_lastPublicationDate_ASC
+  meta_lastPublicationDate_DESC
+  title_ASC
+  title_DESC
+}
+
+enum SortDocumentsBy {
+  meta_firstPublicationDate_ASC
+  meta_firstPublicationDate_DESC
+  meta_lastPublicationDate_ASC
+  meta_lastPublicationDate_DESC
+}
+
+enum SortHomey {
+  description_ASC
+  description_DESC
+  meta_firstPublicationDate_ASC
+  meta_firstPublicationDate_DESC
+  meta_lastPublicationDate_ASC
+  meta_lastPublicationDate_DESC
+  title_ASC
+  title_DESC
+}
+
+enum SortPosty {
+  description_ASC
+  description_DESC
+  meta_firstPublicationDate_ASC
+  meta_firstPublicationDate_DESC
+  meta_lastPublicationDate_ASC
+  meta_lastPublicationDate_DESC
+  release_date_ASC
+  release_date_DESC
+  title_ASC
+  title_DESC
+}
+
+enum SortRichtexty {
+  meta_firstPublicationDate_ASC
+  meta_firstPublicationDate_DESC
+  meta_lastPublicationDate_ASC
+  meta_lastPublicationDate_DESC
+  richtext_ASC
+  richtext_DESC
+}
+
+enum SortSeoy {
+  description_ASC
+  description_DESC
+  meta_firstPublicationDate_ASC
+  meta_firstPublicationDate_DESC
+  meta_lastPublicationDate_ASC
+  meta_lastPublicationDate_DESC
+  title_ASC
+  title_DESC
+}
+
+input WhereCarrossel {
+  """description"""
+  description_fulltext: String
+
+  """title"""
+  title_fulltext: String
+}
+
+input WhereHome {
+  """description"""
+  description_fulltext: String
+
+  """title"""
+  title_fulltext: String
+}
+
+input WherePost {
+  """author"""
+  author: String
+
+  """description"""
+  description_fulltext: String
+
+  """release_date"""
+  release_date: Date
+
+  """release_date"""
+  release_date_after: Date
+
+  """release_date"""
+  release_date_before: Date
+
+  """title"""
+  title_fulltext: String
+}
+
+input WhereRichtext {
+  """richtext"""
+  richtext_fulltext: String
+}
+
+input WhereSeo {
+  """description"""
+  description_fulltext: String
+
+  """title"""
+  title_fulltext: String
+}
+
+"""A prismic document"""
+interface _Document {
+  _meta: Meta!
+}
+
+"""A connection to a list of items."""
+type _DocumentConnection {
+  """A list of edges."""
+  edges: [_DocumentEdge]
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  totalCount: Long!
+}
+
+"""An edge in a connection."""
+type _DocumentEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: _Document!
+}
+
+"""An external link"""
+type _ExternalLink implements _Linkable {
+  _linkType: String
+  target: String
+  url: String!
+}
+
+"""A linked file"""
+type _FileLink implements _Linkable {
+  _linkType: String
+  name: String!
+  size: Long!
+  url: String!
+}
+
+"""A linked image"""
+type _ImageLink implements _Linkable {
+  _linkType: String
+  height: Int!
+  name: String!
+  size: Long!
+  url: String!
+  width: Int!
+}
+
+"""A prismic link"""
+interface _Linkable {
+  _linkType: String
+}
+
+input similar {
+  documentId: String!
+  max: Int!
+}

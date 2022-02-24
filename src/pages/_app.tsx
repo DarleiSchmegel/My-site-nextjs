@@ -9,8 +9,8 @@ import Header from '../components/elements/Header';
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <GlobalStyle />
       <ThemesProvider>
+      <GlobalStyle />
         <Header />
         <Component {...pageProps} />
         <Footer />

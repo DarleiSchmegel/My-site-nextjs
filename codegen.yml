@@ -1,0 +1,17 @@
+overwrite: true
+schema:
+  - https://my-website-darlei.prismic.io/graphql:
+      method: GET
+      headers:
+        Authorization: "Token ${PRISMIC_ACCESSES_TOKEN}"
+        Prismic-Ref: "${PRISMIC_REF}"
+generates:
+  # Schema
+  ./schema.graphql:
+    plugins:
+      - schema-ast
+  src/types/generated/graphql.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"

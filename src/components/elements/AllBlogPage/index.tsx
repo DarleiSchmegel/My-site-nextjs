@@ -1,13 +1,10 @@
 import React from 'react';
 import AllBlogPageTamplete from './template';
 
-type post = {
-  title: string;
-  slug: string;
-  body: string;
-};
+import { Post } from '../../../types/generated/graphql'
+
 export type AllBlogPageComponentProps = {
-  posts: post[];
+  posts: Post[];
 };
 
 const AllBlogPage: React.FC<AllBlogPageComponentProps> = ({ posts }) => {
